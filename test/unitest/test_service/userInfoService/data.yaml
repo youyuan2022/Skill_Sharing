@@ -1,0 +1,19 @@
+-
+  module_name: userInfoService
+  class_name: userInfoService
+  function_name: xxx
+  params:
+      user_id: 
+      user_name: 
+      profile_picture: 
+      signature: 
+      gender: 
+      phone: 
+      date_of_birth: 
+      address: 
+
+  validate:
+    - eq:
+        - code
+        - "2000"
+    

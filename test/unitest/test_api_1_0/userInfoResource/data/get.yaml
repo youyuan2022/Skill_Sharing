@@ -1,0 +1,11 @@
+- name: userInfo查询接口
+  request:
+    method: get
+    url: /api_1_0/userInfo
+    headers:
+      token: token
+  validate:
+    - eq:
+        - status_code
+        - 200
+    

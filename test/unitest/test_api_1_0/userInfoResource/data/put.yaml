@@ -1,0 +1,22 @@
+- name: userInfo修改接口
+  request:
+    method: put
+    url: /api_1_0/userInfo
+    headers:
+      content-type: application/json
+    data:
+      user_id: 
+      user_name: 
+      profile_picture: 
+      signature: 
+      gender: 
+      phone: 
+      date_of_birth: 
+      address: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

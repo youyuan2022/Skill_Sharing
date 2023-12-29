@@ -1,0 +1,355 @@
+2023-12-29 11:54:23.979 | ERROR    | utils.loggings:exception:40 - (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。)')
+[SQL: SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user_info_profile_picture, user_info.signature AS user_info_signature, user_info.gender AS user_info_gender, user_info.phone AS user_info_phone, user_info.date_of_birth AS user_info_date_of_birth, user_info.address AS user_info_address 
+FROM user_info 
+WHERE user_info.phone = %(phone_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'phone_1': '18260595626', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 736, in _read_bytes
+    data = self._rfile.read(num_bytes)
+           │    │           └ 4
+           │    └ None
+           └ <pymysql.connections.Connection object at 0x000002562249CE20>
+
+  File "D:\Anaconda\envs\api.project.com\lib\socket.py", line 669, in readinto
+    return self._sock.recv_into(b)
+           │    │               └ <memory at 0x00000256224A3C40>
+           │    └ None
+           └ <socket.SocketIO object at 0x000002562249CEE0>
+
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x0000025621D248B0>
+    │    └ <sqlalchemy.dialects.mysql.pymysql.MySQLDialect_pymysql object at 0x0000025622152040>
+    └ <sqlalchemy.engine.base.Connection object at 0x0000025622595910>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ {'phone_1': '18260595626', 'param_1': 1}
+    │      │       └ 'SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user...
+    │      └ <function Cursor.execute at 0x0000025622332700>
+    └ <pymysql.cursors.Cursor object at 0x0000025622595040>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\cursors.py", line 158, in execute
+    result = self._query(query)
+             │    │      └ "SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user...
+             │    └ <function Cursor._query at 0x0000025622332B80>
+             └ <pymysql.cursors.Cursor object at 0x0000025622595040>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\cursors.py", line 325, in _query
+    conn.query(q)
+    │    │     └ "SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user...
+    │    └ <function Connection.query at 0x000002562233EC10>
+    └ <pymysql.connections.Connection object at 0x000002562249CE20>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 549, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002562233F280>
+    │    │                └ <pymysql.connections.Connection object at 0x000002562249CE20>
+    │    └ 1
+    └ <pymysql.connections.Connection object at 0x000002562249CE20>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 779, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002562233FA60>
+    └ <pymysql.connections.MySQLResult object at 0x0000025622595790>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 1157, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x0000025622595790>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 696, in _read_packet
+    packet_header = self._read_bytes(4)
+                    │    └ <function Connection._read_bytes at 0x000002562233F160>
+                    └ <pymysql.connections.Connection object at 0x000002562249CE20>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 742, in _read_bytes
+    raise err.OperationalError(
+          │   └ <class 'pymysql.err.OperationalError'>
+          └ <module 'pymysql.err' from 'D:\\Anaconda\\envs\\api.project.com\\lib\\site-packages\\pymysql\\err.py'>
+
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。)')
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "D:\Anaconda\envs\api.project.com\lib\threading.py", line 890, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x000002561E4E5430>
+    └ <Thread(Thread-1, started daemon 20584)>
+
+  File "D:\Anaconda\envs\api.project.com\lib\threading.py", line 932, in _bootstrap_inner
+    self.run()
+    │    └ <function Thread.run at 0x000002561E4E5160>
+    └ <Thread(Thread-1, started daemon 20584)>
+
+  File "D:\Anaconda\envs\api.project.com\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {}
+    │    │        │    │        └ <Thread(Thread-1, started daemon 20584)>
+    │    │        │    └ ()
+    │    │        └ <Thread(Thread-1, started daemon 20584)>
+    │    └ <bound method BaseWSGIServer.serve_forever of <werkzeug.serving.BaseWSGIServer object at 0x00000256224C0C70>>
+    └ <Thread(Thread-1, started daemon 20584)>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\werkzeug\serving.py", line 806, in serve_forever
+    super().serve_forever(poll_interval=poll_interval)
+                                        └ 0.5
+
+  File "D:\Anaconda\envs\api.project.com\lib\socketserver.py", line 237, in serve_forever
+    self._handle_request_noblock()
+    │    └ <function BaseServer._handle_request_noblock at 0x000002561E4E6A60>
+    └ <werkzeug.serving.BaseWSGIServer object at 0x00000256224C0C70>
+
+  File "D:\Anaconda\envs\api.project.com\lib\socketserver.py", line 316, in _handle_request_noblock
+    self.process_request(request, client_address)
+    │    │               │        └ ('127.0.0.1', 59598)
+    │    │               └ <socket.socket fd=720, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=(...
+    │    └ <function BaseServer.process_request at 0x000002561E4E6C10>
+    └ <werkzeug.serving.BaseWSGIServer object at 0x00000256224C0C70>
+
+  File "D:\Anaconda\envs\api.project.com\lib\socketserver.py", line 347, in process_request
+    self.finish_request(request, client_address)
+    │    │              │        └ ('127.0.0.1', 59598)
+    │    │              └ <socket.socket fd=720, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=(...
+    │    └ <function BaseServer.finish_request at 0x000002561E4E6D30>
+    └ <werkzeug.serving.BaseWSGIServer object at 0x00000256224C0C70>
+
+  File "D:\Anaconda\envs\api.project.com\lib\socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    │    │                   │        │               └ <werkzeug.serving.BaseWSGIServer object at 0x00000256224C0C70>
+    │    │                   │        └ ('127.0.0.1', 59598)
+    │    │                   └ <socket.socket fd=720, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 5000), raddr=(...
+    │    └ <class 'werkzeug.serving.WSGIRequestHandler'>
+    └ <werkzeug.serving.BaseWSGIServer object at 0x00000256224C0C70>
+
+  File "D:\Anaconda\envs\api.project.com\lib\socketserver.py", line 720, in __init__
+    self.handle()
+    │    └ <function WSGIRequestHandler.handle at 0x000002562027ECA0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x00000256224B2880>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\werkzeug\serving.py", line 390, in handle
+    super().handle()
+
+  File "D:\Anaconda\envs\api.project.com\lib\http\server.py", line 426, in handle
+    self.handle_one_request()
+    │    └ <function BaseHTTPRequestHandler.handle_one_request at 0x000002562006B1F0>
+    └ <werkzeug.serving.WSGIRequestHandler object at 0x00000256224B2880>
+
+  File "D:\Anaconda\envs\api.project.com\lib\http\server.py", line 414, in handle_one_request
+    method()
+    └ <bound method WSGIRequestHandler.run_wsgi of <werkzeug.serving.WSGIRequestHandler object at 0x00000256224B2880>>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\werkzeug\serving.py", line 362, in run_wsgi
+    execute(self.server.app)
+    │       │    │      └ <werkzeug.debug.DebuggedApplication object at 0x00000256224CA250>
+    │       │    └ <werkzeug.serving.BaseWSGIServer object at 0x00000256224C0C70>
+    │       └ <werkzeug.serving.WSGIRequestHandler object at 0x00000256224B2880>
+    └ <function WSGIRequestHandler.run_wsgi.<locals>.execute at 0x000002562249DC10>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\werkzeug\serving.py", line 325, in execute
+    for data in application_iter:
+                └ <generator object DebuggedApplication.debug_application at 0x0000025622474DD0>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\werkzeug\debug\__init__.py", line 330, in debug_application
+    app_iter = self.app(environ, start_response)
+               │    │   │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x00000256224A40D0>
+               │    │   └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=720>, 'wsgi.errors': <_io.TextIOWr...
+               │    └ <Flask 'app'>
+               └ <werkzeug.debug.DebuggedApplication object at 0x00000256224CA250>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\flask\app.py", line 2213, in __call__
+    return self.wsgi_app(environ, start_response)
+           │    │        │        └ <function WSGIRequestHandler.run_wsgi.<locals>.start_response at 0x00000256224A40D0>
+           │    │        └ {'wsgi.version': (1, 0), 'wsgi.url_scheme': 'http', 'wsgi.input': <_io.BufferedReader name=720>, 'wsgi.errors': <_io.TextIOWr...
+           │    └ <function Flask.wsgi_app at 0x0000025620B42E50>
+           └ <Flask 'app'>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               │    └ <function Flask.full_dispatch_request at 0x0000025620B423A0>
+               └ <Flask 'app'>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         │    └ <function Flask.dispatch_request at 0x0000025620B42310>
+         └ <Flask 'app'>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           │    │           │    │              │    │            └ {}
+           │    │           │    │              │    └ 'userInfo.UserInfo'
+           │    │           │    │              └ <Rule '/api_1_0/userInfo' (GET, OPTIONS, POST, HEAD, PUT, DELETE) -> userInfo.UserInfo>
+           │    │           │    └ {'static': <function Flask.__init__.<locals>.<lambda> at 0x000002562212EF70>, 'apiversion.Apiversion': <function View.as_view...
+           │    │           └ <Flask 'app'>
+           │    └ <function Flask.ensure_sync at 0x0000025620B425E0>
+           └ <Flask 'app'>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\flask_restful\__init__.py", line 489, in wrapper
+    resp = resource(*args, **kwargs)
+           │         │       └ {}
+           │         └ ()
+           └ <function View.as_view.<locals>.view at 0x00000256224544C0>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\flask\views.py", line 109, in view
+    return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+           │                       │    │                   └ {}
+           │                       │    └ <function Resource.dispatch_request at 0x000002562235DA60>
+           │                       └ <api_1_0.userInfoResource.userInfoResource.UserInfoResource object at 0x000002562249C340>
+           └ <Flask 'app'>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\flask_restful\__init__.py", line 604, in dispatch_request
+    resp = meth(*args, **kwargs)
+           │     │       └ {}
+           │     └ ()
+           └ <bound method UserInfoResource.post of <class 'api_1_0.userInfoResource.userInfoResource.UserInfoResource'>>
+
+  File "D:\Python_RESTfulAPI_Codegen\dist\dist_1703676800155\api.project.com\api_1_0\userInfoResource\userInfoResource.py", line 127, in post
+    res = UserInfoController.create_or_update_user_from_wechat(phone_number)
+          │                  │                                 └ '18260595626'
+          │                  └ <classmethod object at 0x0000025622451820>
+          └ <class 'controller.userInfoController.UserInfoController'>
+
+> File "D:\Python_RESTfulAPI_Codegen\dist\dist_1703676800155\api.project.com\controller\userInfoController.py", line 59, in create_or_update_user_from_wechat
+    user = cls.query.filter_by(phone=phone_number).first()
+           │   │                     └ '18260595626'
+           │   └ <flask_sqlalchemy.model._QueryProperty object at 0x0000025621D285B0>
+           └ <class 'controller.userInfoController.UserInfoController'>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\orm\query.py", line 2748, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           │    └ <function Query.limit at 0x0000025621F6D550>
+           └ <flask_sqlalchemy.query.Query object at 0x000002562249CD90>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\orm\query.py", line 2847, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+            │                  │    │      │      │    │       └ <function Session.execute at 0x0000025621FF7B80>
+            │                  │    │      │      │    └ <sqlalchemy.orm.session.Session object at 0x0000025622511310>
+            │                  │    │      │      └ <flask_sqlalchemy.query.Query object at 0x000002562255CFD0>
+            │                  │    │      └ ~_T
+            │                  │    └ <class 'sqlalchemy.engine.result.Result'>
+            │                  └ ~_T
+            └ typing.Union
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\orm\session.py", line 2308, in execute
+    return self._execute_internal(
+           │    └ <function Session._execute_internal at 0x0000025621FF7AF0>
+           └ <sqlalchemy.orm.session.Session object at 0x0000025622511310>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\orm\session.py", line 2190, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                   │      │                 └ <classmethod object at 0x0000025621E73F40>
+                   │      └ <class 'sqlalchemy.orm.context.ORMSelectCompileState'>
+                   └ typing.Any
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             │    └ <function Connection.execute at 0x0000025621B181F0>
+             └ <sqlalchemy.engine.base.Connection object at 0x0000025622595910>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\base.py", line 1416, in execute
+    return meth(
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.selectable.Select object at 0x000002562249C820>>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\sql\elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x0000025621B184C0>
+           └ <sqlalchemy.engine.base.Connection object at 0x0000025622595910>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\base.py", line 1639, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x0000025621B18670>
+          └ <sqlalchemy.engine.base.Connection object at 0x0000025622595910>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           │    └ <function Connection._exec_single_context at 0x0000025621B18700>
+           └ <sqlalchemy.engine.base.Connection object at 0x0000025622595910>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x0000025621B18940>
+    └ <sqlalchemy.engine.base.Connection object at 0x0000025622595910>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\base.py", line 2343, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+          │                    │              │                 └ OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。)')
+          │                    │              └ (<class 'pymysql.err.OperationalError'>, OperationalError(2013, 'Lost connection to MySQL server during query ([WinError 1006...
+          │                    └ <method 'with_traceback' of 'BaseException' objects>
+          └ OperationalError("(pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10060] 由于连接方...
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\base.py", line 1969, in _exec_single_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x0000025621D248B0>
+    │    └ <sqlalchemy.dialects.mysql.pymysql.MySQLDialect_pymysql object at 0x0000025622152040>
+    └ <sqlalchemy.engine.base.Connection object at 0x0000025622595910>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\sqlalchemy\engine\default.py", line 922, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ {'phone_1': '18260595626', 'param_1': 1}
+    │      │       └ 'SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user...
+    │      └ <function Cursor.execute at 0x0000025622332700>
+    └ <pymysql.cursors.Cursor object at 0x0000025622595040>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\cursors.py", line 158, in execute
+    result = self._query(query)
+             │    │      └ "SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user...
+             │    └ <function Cursor._query at 0x0000025622332B80>
+             └ <pymysql.cursors.Cursor object at 0x0000025622595040>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\cursors.py", line 325, in _query
+    conn.query(q)
+    │    │     └ "SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user...
+    │    └ <function Connection.query at 0x000002562233EC10>
+    └ <pymysql.connections.Connection object at 0x000002562249CE20>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 549, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+    │    │                │    │                             └ False
+    │    │                │    └ <function Connection._read_query_result at 0x000002562233F280>
+    │    │                └ <pymysql.connections.Connection object at 0x000002562249CE20>
+    │    └ 1
+    └ <pymysql.connections.Connection object at 0x000002562249CE20>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 779, in _read_query_result
+    result.read()
+    │      └ <function MySQLResult.read at 0x000002562233FA60>
+    └ <pymysql.connections.MySQLResult object at 0x0000025622595790>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 1157, in read
+    first_packet = self.connection._read_packet()
+                   │    └ None
+                   └ <pymysql.connections.MySQLResult object at 0x0000025622595790>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 696, in _read_packet
+    packet_header = self._read_bytes(4)
+                    │    └ <function Connection._read_bytes at 0x000002562233F160>
+                    └ <pymysql.connections.Connection object at 0x000002562249CE20>
+
+  File "D:\Anaconda\envs\api.project.com\lib\site-packages\pymysql\connections.py", line 742, in _read_bytes
+    raise err.OperationalError(
+          │   └ <class 'pymysql.err.OperationalError'>
+          └ <module 'pymysql.err' from 'D:\\Anaconda\\envs\\api.project.com\\lib\\site-packages\\pymysql\\err.py'>
+
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query ([WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。)')
+[SQL: SELECT user_info.user_id AS user_info_user_id, user_info.user_name AS user_info_user_name, user_info.profile_picture AS user_info_profile_picture, user_info.signature AS user_info_signature, user_info.gender AS user_info_gender, user_info.phone AS user_info_phone, user_info.date_of_birth AS user_info_date_of_birth, user_info.address AS user_info_address 
+FROM user_info 
+WHERE user_info.phone = %(phone_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'phone_1': '18260595626', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)

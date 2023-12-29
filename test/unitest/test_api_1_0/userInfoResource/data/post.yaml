@@ -1,0 +1,24 @@
+- name: userInfo添加接口
+  request:
+    method: post
+    url: /api_1_0/userInfo
+    headers:
+      token: token
+    data:
+      user_id: 
+      user_name: 
+      profile_picture: 
+      signature: 
+      gender: 
+      phone: 
+      date_of_birth: 
+      address: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

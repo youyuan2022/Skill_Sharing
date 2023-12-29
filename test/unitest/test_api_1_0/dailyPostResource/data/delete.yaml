@@ -1,0 +1,23 @@
+- name: dailyPost删除接口
+  request:
+    method: delete
+    url: /api_1_0/dailyPost
+    headers:
+      content-type: application/json
+    data:
+      daily_post_id: 
+      user_id: 
+      post_title: 
+      post_text: 
+      images: 
+      topic: 
+      timestamp: 
+      likes: 
+      comments: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

@@ -1,0 +1,25 @@
+- name: dailyPost添加接口
+  request:
+    method: post
+    url: /api_1_0/dailyPost
+    headers:
+      token: token
+    data:
+      daily_post_id: 
+      user_id: 
+      post_title: 
+      post_text: 
+      images: 
+      topic: 
+      timestamp: 
+      likes: 
+      comments: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    
