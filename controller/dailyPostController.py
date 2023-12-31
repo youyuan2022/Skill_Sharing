@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 
 from app import db
 from models.daily_post import DailyPost
+from models.user_info import UserInfo
 from utils import commons
 from utils.response_code import RET, error_map_EN
 from utils.loggings import loggings
@@ -101,18 +102,21 @@ class DailyPostController(DailyPost):
             page = int(kwargs.get('Page', 1))
             size = int(kwargs.get('Size', 10))
 
-            # 如果没有提供daily_post_id，则默认返回最新的帖子
-            if 'daily_post_id' not in kwargs:
-                size = 3  # 如果您想获取最新的3个帖子，忽略传递的Size参数
-                order_by = cls.timestamp.desc()  # 确保按照时间戳降序排序
-
-            daily_post_info = db.session.query(cls).filter(*filter_list).order_by(order_by)
-
-            count = daily_post_info.count()
+            # 执行联合查询而且是按照时间降序
+            query = db.session.query(cls, UserInfo).join(UserInfo, cls.user_id == UserInfo.user_id).filter(*filter_list).order_by(order_by)
+            count = query.count()
             pages = math.ceil(count / size)
-            daily_post_info = daily_post_info.limit(size).offset((page - 1) * size).all()
 
-            results = commons.query_to_dict(daily_post_info)
+            # 分页
+            daily_posts = query.limit(size).offset((page - 1) * size).all()
+
+            # 将查询结果转换为字典
+            results = []
+            for daily_post, user_info in daily_posts:
+                post_data = daily_post.to_dict()  # 或者您自己的转换方法
+                user_data = user_info.to_dict()  # 转换用户信息为字典
+                post_data['user_info'] = user_data  # 将用户信息添加到帖子数据中
+                results.append(post_data)
             return {'code': RET.OK, 'message': error_map_EN[RET.OK], 'totalCount': count, 'totalPage': pages,
                     'data': results}
 

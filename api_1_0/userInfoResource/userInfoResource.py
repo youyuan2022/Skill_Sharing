@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-# -*- coding:utf-8 -*- 
+# -*- coding:utf-8 -*-
 
 from flask_restful import Resource, reqparse
 from controller.userInfoController import UserInfoController
 from utils import commons
 from utils.response_code import RET, error_map_EN
 import json
-
 
 import http.client
 import json
@@ -37,13 +36,14 @@ class UserInfoResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('user_id', location='args', required=False, help='user_id参数类型不正确或缺失')
         parser.add_argument('user_name', location='args', required=False, help='user_name参数类型不正确或缺失')
-        parser.add_argument('profile_picture', location='args', required=False, help='profile_picture参数类型不正确或缺失')
+        parser.add_argument('profile_picture', location='args', required=False,
+                            help='profile_picture参数类型不正确或缺失')
         parser.add_argument('signature', location='args', required=False, help='signature参数类型不正确或缺失')
         parser.add_argument('gender', location='args', required=False, help='gender参数类型不正确或缺失')
         parser.add_argument('phone', location='args', required=False, help='phone参数类型不正确或缺失')
         parser.add_argument('date_of_birth', location='args', required=False, help='date_of_birth参数类型不正确或缺失')
         parser.add_argument('address', location='args', required=False, help='address参数类型不正确或缺失')
-        
+
         parser.add_argument('Page', location='args', required=False, help='Page参数类型不正确或缺失')
         parser.add_argument('Size', location='args', required=False, help='Size参数类型不正确或缺失')
 
@@ -52,11 +52,13 @@ class UserInfoResource(Resource):
 
         res = UserInfoController.get(**kwargs)
         if res['code'] == RET.OK:
-            return jsonify(code=res['code'], message=res['message'], data=res['data'], totalPage=res['totalPage'], totalCount=res['totalCount'])
+            return jsonify(code=res['code'], message=res['message'], data=res['data'], totalPage=res['totalPage'],
+                           totalCount=res['totalCount'])
         else:
-            return jsonify(code=res['code'], message=res['message'], data=res['data']) 
+            return jsonify(code=res['code'], message=res['message'], data=res['data'])
 
-    # delete
+            # delete
+
     @classmethod
     def delete(cls, user_id=None):
         if user_id:
@@ -79,15 +81,23 @@ class UserInfoResource(Resource):
 
         parser = reqparse.RequestParser()
         parser.add_argument('user_name', location='form', required=False, help='user_name参数类型不正确或缺失')
-        parser.add_argument('profile_picture', location='form', required=False, help='profile_picture参数类型不正确或缺失')
+        # parser.add_argument('profile_picture', location='form', required=False,
+        #                     help='profile_picture参数类型不正确或缺失')
         parser.add_argument('signature', location='form', required=False, help='signature参数类型不正确或缺失')
         parser.add_argument('gender', location='form', required=False, help='gender参数类型不正确或缺失')
         parser.add_argument('phone', location='form', required=False, help='phone参数类型不正确或缺失')
         parser.add_argument('date_of_birth', location='form', required=False, help='date_of_birth参数类型不正确或缺失')
         parser.add_argument('address', location='form', required=False, help='address参数类型不正确或缺失')
-        
-        kwargs = parser.parse_args()
-        kwargs = commons.put_remove_none(**kwargs)
+
+        args = parser.parse_args()
+
+        # 处理图片上传
+        if 'profile_picture' in request.files:
+            file = request.files.get('profile_picture')
+            avatar_url = UserInfoController.upload_avatar(file)
+            args['profile_picture'] = avatar_url
+
+        kwargs = commons.put_remove_none(**args)
         kwargs['user_id'] = user_id
 
         res = UserInfoController.update(**kwargs)

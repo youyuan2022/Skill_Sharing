@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
+import os
 import random
 import datetime
 import math
@@ -14,6 +15,7 @@ from utils import commons
 from utils.response_code import RET, error_map_EN
 from utils.loggings import loggings
 from utils.generate_id import GenerateID
+from werkzeug.utils import secure_filename
 
 
 class UserInfoController(UserInfo):
@@ -82,6 +84,21 @@ class UserInfoController(UserInfo):
             db.session.rollback()
             loggings.exception(1, e)
             return {'code': RET.DBERR, 'message': str(e), 'data': {}}
+
+    # 头像保存到数据库
+    @staticmethod
+    def upload_avatar(file):
+        UPLOAD_FOLDER = r'/var/avatars'
+        if file and file.filename:
+            filename = secure_filename(file.filename)
+            file_path = os.path.join(UPLOAD_FOLDER, filename)
+            try:
+                file.save(file_path)
+                image_url = f"http://8.130.89.73/avatars/{filename}"
+                return image_url
+            except Exception as e:
+                loggings.exception("Failed to save file", e)
+                return None
 
     # get
     @classmethod
