@@ -1,0 +1,23 @@
+- name: swapPost删除接口
+  request:
+    method: delete
+    url: /api_1_0/swapPost
+    headers:
+      content-type: application/json
+    data:
+      swap_post_id: 
+      user_id: 
+      swap_method: 
+      post_text: 
+      images: 
+      appointment_time: 
+      likes: 
+      comments: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

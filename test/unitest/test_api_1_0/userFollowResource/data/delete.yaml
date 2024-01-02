@@ -1,0 +1,18 @@
+- name: userFollow删除接口
+  request:
+    method: delete
+    url: /api_1_0/userFollow
+    headers:
+      content-type: application/json
+    data:
+      follow_id: 
+      follower_id: 
+      followee_id: 
+      follow_date: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

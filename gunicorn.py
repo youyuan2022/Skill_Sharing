@@ -10,7 +10,8 @@ import sys
 
 
 def start():
-    cmd = 'source skill/bin/activate;' \
+    cmd = 'source /deploy/app/venv/bin/activate;' \
+          'cd /deploy/your project;' \
           'gunicorn -c deploy/gunicorn.conf manage:app -D'
     os.system(cmd)
 

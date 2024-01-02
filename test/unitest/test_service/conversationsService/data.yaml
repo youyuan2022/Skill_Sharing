@@ -1,0 +1,14 @@
+-
+  module_name: conversationsService
+  class_name: conversationsService
+  function_name: xxx
+  params:
+      conversation_id: 
+      user1_id: 
+      user2_id: 
+
+  validate:
+    - eq:
+        - code
+        - "2000"
+    

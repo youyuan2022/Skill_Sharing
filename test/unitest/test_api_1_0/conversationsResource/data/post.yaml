@@ -1,0 +1,19 @@
+- name: conversations添加接口
+  request:
+    method: post
+    url: /api_1_0/conversations
+    headers:
+      token: token
+    data:
+      conversation_id: 
+      user1_id: 
+      user2_id: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

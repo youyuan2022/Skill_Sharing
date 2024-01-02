@@ -1,0 +1,23 @@
+- name: swapPost修改接口
+  request:
+    method: put
+    url: /api_1_0/swapPost
+    headers:
+      content-type: application/json
+    data:
+      swap_post_id: 
+      user_id: 
+      swap_method: 
+      post_text: 
+      images: 
+      appointment_time: 
+      likes: 
+      comments: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

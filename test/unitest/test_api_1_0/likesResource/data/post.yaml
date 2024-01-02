@@ -1,0 +1,21 @@
+- name: likes添加接口
+  request:
+    method: post
+    url: /api_1_0/likes
+    headers:
+      token: token
+    data:
+      like_id: 
+      user_id: 
+      liked_type: 
+      liked_id: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

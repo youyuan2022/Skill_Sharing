@@ -11,9 +11,9 @@
       post_text: 
       images: 
       topic: 
-      timestamp: 
       likes: 
       comments: 
+      timestamp: 
 
   validate:
     - eq:

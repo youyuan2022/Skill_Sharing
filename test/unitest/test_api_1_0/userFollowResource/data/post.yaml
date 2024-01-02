@@ -1,0 +1,20 @@
+- name: userFollow添加接口
+  request:
+    method: post
+    url: /api_1_0/userFollow
+    headers:
+      token: token
+    data:
+      follow_id: 
+      follower_id: 
+      followee_id: 
+      follow_date: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

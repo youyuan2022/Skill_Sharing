@@ -1,0 +1,18 @@
+- name: skillRequire修改接口
+  request:
+    method: put
+    url: /api_1_0/skillRequire
+    headers:
+      content-type: application/json
+    data:
+      skill_id: 
+      skill_name: 
+      parent_type: 
+      parent_id: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

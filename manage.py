@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 """
@@ -31,7 +31,7 @@ def user_validation():
 @app.before_request
 def user_require_token():
     # 不需要token验证的请求点列表
-    permission = ['apiversion.Apiversion', 'dailyPost.DailyPost', 'userInfo.UserInfo']
+    permission = ['apiversion.Apiversion', 'comments.Comments', 'likes.Likes', 'message.Message', 'conversations.Conversations', 'users.Users', 'swapPost.SwapPost', 'skillRequire.SkillRequire', 'userAppointment.UserAppointment', 'userFollow.UserFollow', 'skillMaster.SkillMaster', 'dailyPost.DailyPost', 'userInfo.UserInfo']
 
     # 如果不是请求上述列表中的接口，需要验证token
     if request.endpoint not in permission:

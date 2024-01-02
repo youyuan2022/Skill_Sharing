@@ -1,0 +1,25 @@
+- name: swapPost添加接口
+  request:
+    method: post
+    url: /api_1_0/swapPost
+    headers:
+      token: token
+    data:
+      swap_post_id: 
+      user_id: 
+      swap_method: 
+      post_text: 
+      images: 
+      appointment_time: 
+      likes: 
+      comments: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

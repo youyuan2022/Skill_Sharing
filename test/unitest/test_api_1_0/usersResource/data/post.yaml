@@ -1,0 +1,22 @@
+- name: users添加接口
+  request:
+    method: post
+    url: /api_1_0/users
+    headers:
+      token: token
+    data:
+      user_id: 
+      password: 
+      status: 
+      wx_openid: 
+      role: 
+      registration_time: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

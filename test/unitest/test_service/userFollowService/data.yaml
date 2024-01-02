@@ -1,0 +1,15 @@
+-
+  module_name: userFollowService
+  class_name: userFollowService
+  function_name: xxx
+  params:
+      follow_id: 
+      follower_id: 
+      followee_id: 
+      follow_date: 
+
+  validate:
+    - eq:
+        - code
+        - "2000"
+    

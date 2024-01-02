@@ -1,0 +1,15 @@
+-
+  module_name: skillRequireService
+  class_name: skillRequireService
+  function_name: xxx
+  params:
+      skill_id: 
+      skill_name: 
+      parent_type: 
+      parent_id: 
+
+  validate:
+    - eq:
+        - code
+        - "2000"
+    

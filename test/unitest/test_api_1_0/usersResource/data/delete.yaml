@@ -1,0 +1,20 @@
+- name: users删除接口
+  request:
+    method: delete
+    url: /api_1_0/users
+    headers:
+      content-type: application/json
+    data:
+      user_id: 
+      password: 
+      status: 
+      wx_openid: 
+      role: 
+      registration_time: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

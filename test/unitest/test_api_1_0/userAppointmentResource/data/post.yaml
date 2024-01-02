@@ -1,0 +1,23 @@
+- name: userAppointment添加接口
+  request:
+    method: post
+    url: /api_1_0/userAppointment
+    headers:
+      token: token
+    data:
+      appointment_id: 
+      sender_id: 
+      receiver_id: 
+      method: 
+      appointment_time: 
+      agree: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

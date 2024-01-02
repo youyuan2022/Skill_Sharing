@@ -1,0 +1,18 @@
+-
+  module_name: userAppointmentService
+  class_name: userAppointmentService
+  function_name: xxx
+  params:
+      appointment_id: 
+      sender_id: 
+      receiver_id: 
+      method: 
+      appointment_time: 
+      agree: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - code
+        - "2000"
+    

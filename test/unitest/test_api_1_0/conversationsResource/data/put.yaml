@@ -1,0 +1,17 @@
+- name: conversations修改接口
+  request:
+    method: put
+    url: /api_1_0/conversations
+    headers:
+      content-type: application/json
+    data:
+      conversation_id: 
+      user1_id: 
+      user2_id: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+
+    

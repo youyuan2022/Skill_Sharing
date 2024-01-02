@@ -1,0 +1,20 @@
+- name: skillMaster添加接口
+  request:
+    method: post
+    url: /api_1_0/skillMaster
+    headers:
+      token: token
+    data:
+      skill_id: 
+      skill_name: 
+      parent_type: 
+      parent_id: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

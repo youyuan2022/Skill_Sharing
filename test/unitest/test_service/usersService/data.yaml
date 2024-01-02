@@ -1,0 +1,17 @@
+-
+  module_name: usersService
+  class_name: usersService
+  function_name: xxx
+  params:
+      user_id: 
+      password: 
+      status: 
+      wx_openid: 
+      role: 
+      registration_time: 
+
+  validate:
+    - eq:
+        - code
+        - "2000"
+    

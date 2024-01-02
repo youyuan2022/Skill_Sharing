@@ -1,0 +1,25 @@
+- name: comments添加接口
+  request:
+    method: post
+    url: /api_1_0/comments
+    headers:
+      token: token
+    data:
+      comment_id: 
+      user_id: 
+      comment_text: 
+      commented_type: 
+      commented_id: 
+      parent_comment_id: 
+      likes: 
+      replies: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - status_code
+        - 200
+    - eq:
+        - code
+        - "2000"
+    

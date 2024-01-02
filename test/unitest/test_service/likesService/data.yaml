@@ -1,0 +1,16 @@
+-
+  module_name: likesService
+  class_name: likesService
+  function_name: xxx
+  params:
+      like_id: 
+      user_id: 
+      liked_type: 
+      liked_id: 
+      timestamp: 
+
+  validate:
+    - eq:
+        - code
+        - "2000"
+    
