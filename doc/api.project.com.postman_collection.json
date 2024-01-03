@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "30cdee2f-6d80-41b1-a000-5026cf8a1138",
+		"name": "api.project.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30968597"
+	},
+	"item": [
+		{
+			"name": "dailyPost",
+			"item": [
+				{
+					"name": "单条添加",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "daily_post_id",
+									"value": "202311",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "2024010120257460",
+									"type": "text"
+								},
+								{
+									"key": "post_title",
+									"value": "快要放假了",
+									"type": "text"
+								},
+								{
+									"key": "post_text",
+									"value": "好好学习编程技术",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"mg5Hwy62N/logo.png",
+										"thM-KjVND/微信图片_2021080810363415.jpg",
+										"_Bo7LoZyZ/logo.png"
+									]
+								},
+								{
+									"key": "topic",
+									"value": "编程",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "timestamp",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "likes",
+									"value": "0",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comments",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "http://8.130.89.73:5000/api_1_0/dailyPost"
+					},
+					"response": [
+						{
+							"name": "单条添加",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "daily_post_id",
+											"value": "202311",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "user_id",
+											"value": "2024010120257460",
+											"type": "text"
+										},
+										{
+											"key": "post_title",
+											"value": "快要放假了",
+											"type": "text"
+										},
+										{
+											"key": "post_text",
+											"value": "好好学习编程技术",
+											"type": "text"
+										},
+										{
+											"key": "images",
+											"type": "file",
+											"src": [
+												"mg5Hwy62N/logo.png",
+												"thM-KjVND/微信图片_2021080810363415.jpg",
+												"_Bo7LoZyZ/logo.png"
+											]
+										},
+										{
+											"key": "topic",
+											"value": "编程",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "timestamp",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "likes",
+											"value": "0",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "comments",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": "http://8.130.89.73:5000/api_1_0/dailyPost"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "gunicorn"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 Jan 2024 04:30:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "119"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS,GET,POST,PUT,DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-requested-with,content-type,Token,Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "VerifyCodeID,ext"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"2000\",\n    \"data\": {\n        \"add_time\": \"2024-01-03 12:30:21\",\n        \"daily_post_id\": \"2024010312305129\"\n    },\n    \"message\": \"successfully!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "帖子查询",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "http://8.130.89.73:5000/api_1_0/dailyPost"
+					},
+					"response": []
+				},
+				{
+					"name": "更新帖子",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "daily_post_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "post_title",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "post_text",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "topic",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "timestamp",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "likes",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "comments",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "userInfo",
+			"item": [
+				{
+					"name": "添加用户",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_name",
+									"value": "hello",
+									"type": "text"
+								},
+								{
+									"key": "profile_picture",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "signature",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "111111",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "bf22f5ffff92f0a2619ebb595350cd52e5c56d3921269df74dd06288b57ba9ef",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "13579",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://8.130.89.73:5000/api_1_0/userInfo"
+					},
+					"response": []
+				},
+				{
+					"name": "查看用户信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://8.130.89.73:5000/api_1_0/userInfo/2024010120257460"
+					},
+					"response": []
+				},
+				{
+					"name": "更新用户信息",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_name",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "profile_picture",
+									"type": "file",
+									"src": "j4pF-XcK6/square one.png"
+								}
+							]
+						},
+						"url": "http://8.130.89.73:5000/api_1_0/userInfo/2024010120257460"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "swapPost",
+			"item": [
+				{
+					"name": "单条添加",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "2024010120257460",
+									"type": "text"
+								},
+								{
+									"key": "post_text",
+									"value": "北京",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "As5TtF47i/comments.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://8.130.89.73:5000/api_1_0/swapPost",
+							"protocol": "http",
+							"host": [
+								"8",
+								"130",
+								"89",
+								"73"
+							],
+							"port": "5000",
+							"path": [
+								"api_1_0",
+								"swapPost"
+							],
+							"query": [
+								{
+									"key": "swap_post_id",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "帖子查询",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "http://8.130.89.73:5000/api_1_0/swapPost/2024010215171836"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api版本获取",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://8.130.89.73:8000/api_1_0/apiversion"
+			},
+			"response": []
+		}
+	]
+}
