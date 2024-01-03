@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80035
  Source Host           : 8.130.89.73:3306
- Source Schema         : skill_sharing
+ Source Schema         : skill_sharing_modified_version
 
  Target Server Type    : MySQL
  Target Server Version : 80035
  File Encoding         : 65001
 
- Date: 03/01/2024 11:46:15
+ Date: 03/01/2024 15:31:35
 */
 
 SET NAMES utf8mb4;
@@ -97,27 +97,27 @@ CREATE TABLE `message`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for skill_master
+-- Table structure for skill
 -- ----------------------------
-DROP TABLE IF EXISTS `skill_master`;
-CREATE TABLE `skill_master`  (
-  `skill_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `skill_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称',
-  `parent_type` tinyint(0) NULL DEFAULT NULL COMMENT '1.swap_post 2.user_appointment 3.user_info',
-  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '父id',
-  PRIMARY KEY (`skill_id`) USING BTREE
+DROP TABLE IF EXISTS `skill`;
+CREATE TABLE `skill`  (
+  `skill_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '技能ID，主键。',
+  `skill_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '技能名称。',
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '技能描述。',
+  `category_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '外键，关联到skill_categories表的category_id，表示该技能所属的类别',
+  PRIMARY KEY (`skill_id`) USING BTREE,
+  INDEX `category_id`(`category_id`) USING BTREE,
+  CONSTRAINT `skill_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `skill_categories` (`category_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for skill_require
+-- Table structure for skill_categories
 -- ----------------------------
-DROP TABLE IF EXISTS `skill_require`;
-CREATE TABLE `skill_require`  (
-  `skill_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `skill_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `parent_type` tinyint(0) NULL DEFAULT NULL COMMENT '1.swap_post 2.user_appointment',
-  `parent_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`skill_id`) USING BTREE
+DROP TABLE IF EXISTS `skill_categories`;
+CREATE TABLE `skill_categories`  (
+  `category_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '类别ID，主键',
+  `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '类别名称，例如“体育”、“艺术”、“编程”等。',
+  PRIMARY KEY (`category_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -178,6 +178,22 @@ CREATE TABLE `user_info`  (
   `date_of_birth` date NULL DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for user_skills
+-- ----------------------------
+DROP TABLE IF EXISTS `user_skills`;
+CREATE TABLE `user_skills`  (
+  `user_skill_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户技能关系记录ID，主键',
+  `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户ID，外键关联到users表',
+  `skill_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '技能ID，外键关联到skills表',
+  `type` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '字段标识该条记录是用户的“提供”技能还是“需求”技能',
+  PRIMARY KEY (`user_skill_id`) USING BTREE,
+  INDEX `user_id`(`user_id`) USING BTREE,
+  INDEX `skill_id`(`skill_id`) USING BTREE,
+  CONSTRAINT `user_skills_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_skills_ibfk_2` FOREIGN KEY (`skill_id`) REFERENCES `skill` (`skill_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
